@@ -1,13 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code/Core/utilis/constants.dart';
 import 'package:qr_code/Core/utilis/custom_button.dart';
 import 'package:qr_code/Core/utilis/stayles.dart';
 import 'package:qr_code/Core/utilis/svg_icons.dart';
+import 'package:qr_code/Presentation/Screens/Qr_Screen/qr_screen.dart';
 
 import '../../Widgets/custom_field.dart';
 
-class ScanScreen extends StatelessWidget {
-  const ScanScreen({Key? key}) : super(key: key);
+class ResultScreen extends StatelessWidget {
+  const ResultScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,10 @@ class ScanScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const QrScreen()));
+                    },
                     icon: const SvgIcon(
                       svg: 'arrow',
                       size: 28,
@@ -65,9 +70,9 @@ class ScanScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            CustomFiled(),
-            CustomFiled(),
-            CustomFiled(),
+            const CustomFiled(),
+            const CustomFiled(),
+            const CustomFiled(),
 
             // CustomFiled(),
             Padding(
@@ -76,6 +81,28 @@ class ScanScreen extends StatelessWidget {
                 text: "Send",
                 onTap: () {},
               ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Column(
+              children: [
+                const Text(
+                  "Do you want to sign out in your account ??",
+                  style: Styles.textStyle0121,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomButton(
+                  text: "Sign out",
+                  onTap: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        "loginScreen", (route) => false);
+                  },
+                ),
+              ],
             )
           ],
         ),

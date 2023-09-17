@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code/Core/utilis/constants.dart';
 
 abstract class Styles {
   static const textStyle24 = TextStyle(
@@ -19,8 +20,9 @@ abstract class Styles {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
-  static const textStyle0122 = TextStyle(
+  static const textStyle141 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
+    color: kPrimaryColor,
   );
 }

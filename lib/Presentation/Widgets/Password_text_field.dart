@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PasswordTextFormField extends StatefulWidget {
+
   PasswordTextFormField({
     Key? key,
     required this.hinText,
@@ -20,18 +21,23 @@ class PasswordTextFormField extends StatefulWidget {
 }
 
 class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
+  TextEditingController email = TextEditingController();
+
+  TextEditingController password = TextEditingController();
+
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
   bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: widget.formKey,
+      key: formState,
       obscureText: obscureText,
       validator: (val) {
         if (val == "") {
           return "can't to be empty";
         }
       },
-      controller: widget.myController,
+      controller: password,
       decoration: InputDecoration(
         suffixIcon: InkWell(
           onTap: () {
