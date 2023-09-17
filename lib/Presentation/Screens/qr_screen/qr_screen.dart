@@ -3,6 +3,7 @@ import 'package:qr_code/Core/utilis/constants.dart';
 import 'package:qr_code/Core/utilis/custom_button.dart';
 import 'package:qr_code/Core/utilis/stayles.dart';
 import 'package:qr_code/Core/utilis/svg_icons.dart';
+import 'package:qr_code/Presentation/components/read_scanner/scanner_components.dart';
 
 class QrScreen extends StatelessWidget {
   const QrScreen({Key? key}) : super(key: key);
@@ -62,12 +63,28 @@ class QrScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const SvgIcon(
-              svg: 'qr_code',
-              size: 150,
-            ),
+       Container(
+         height: 200,
+         child: Stack(
+           children: [
+             Container(
+               child: InkWell(
+                 onTap: () {
+                   Navigator.of(context).push(MaterialPageRoute(
+                       builder: (context) => ScannerCopmonents()));
+                 },
+                 child: const SvgIcon(
+                   svg: 'qr_code',
+                   size: 200,
+                 ),
+               ),
+             ),
+             Container(child: ScannerCopmonents()),
+           ],
+         ),
+       ),
             const SizedBox(
-              height: 40,
+              height: 70,
             ),
             const Center(
               child: Row(
@@ -107,7 +124,7 @@ class QrScreen extends StatelessWidget {
                       .pushNamedAndRemoveUntil("ScanScreen", (route) => false);
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -8,7 +8,6 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
               const CustomStack(),
               const SizedBox(height: 50),
               CustomLoginBody(),
-
             ],
           ),
         ],
