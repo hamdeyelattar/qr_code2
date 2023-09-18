@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code/Core/utilis/custom_button.dart';
 import 'package:qr_code/Core/utilis/stayles.dart';
-import 'package:qr_code/Presentation/Screens/auth/login/Login_screen.dart';
 import 'package:qr_code/Presentation/Widgets/custom_text_form.dart';
 
 import '../../../../Core/utilis/constants.dart';
