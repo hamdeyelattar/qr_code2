@@ -11,8 +11,8 @@ import 'Presentation/Screens/auth/login/Login_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-      );
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const QrApp());
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -47,11 +47,9 @@ class _QrAppState extends State<QrApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-      // home:(FirebaseAuth.instance.currentUser != null &&
-      //     FirebaseAuth.instance.currentUser!.emailVerified)
-      //     ? QrScreen()
-      //     : LoginScreen(),
+      home: FirebaseAuth.instance.currentUser == null
+          ? LoginScreen()
+          : QrScreen(),
       routes: {
         "loginScreen": (context) => LoginScreen(),
         "qrScreen": (context) => QrScreen(),

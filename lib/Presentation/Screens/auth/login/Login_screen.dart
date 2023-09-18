@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code/Core/utilis/stayles.dart';
-import 'package:qr_code/Presentation/Screens/Qr_Screen/qr_screen.dart';
-import 'package:qr_code/Presentation/Screens/result_scan_screen/result_screen.dart';
-
 import 'package:qr_code/Presentation/Widgets/custom_stack.dart';
 import '../../../../Core/utilis/custom_button.dart';
 import '../../../Widgets/Password_text_field.dart';
@@ -82,18 +79,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomButton(
                           text: 'Login',
                           onTap: () async {
-                            try {
-                              final credential = await FirebaseAuth.instance
-                                  .signInWithEmailAndPassword(
-                                      email: email.text,
-                                      password: password.text);
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  "qrScreen", (route) => false);
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'user-not-found') {
-                                print('No user found for that email.');
-                              } else if (e.code == 'wrong-password') {
-                                print('Wrong password provided for that user.');
+                            if (formState.currentState!.validate()) {
+                              try {
+                                final credential = await FirebaseAuth.instance
+                                    .signInWithEmailAndPassword(
+                                  email: email.text,
+                                  password: password.text,
+                                );
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    "qrScreen", (route) => false);
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'user-not-found') {
+                                  print('No user found for that email.');
+                                } else if (e.code == 'wrong-password') {
+                                  print(
+                                      'Wrong password provided for that user.');
+                                }
                               }
                             }
                           }),
